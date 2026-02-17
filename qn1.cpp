@@ -4,21 +4,20 @@ using namespace std;
 /*********************************************************************
 File name: qn1.cpp 
 Author: KRIPA HAYANJU
-Date: 09/18/2025
+Date: 02/17/2025
 
 Purpose:
-    The program reads movie data from a file and stores it in an array of structures. 
-    It allows tracking the number of times each movie has been watched, computes the total runtime of all movies, and identifies the least-watched movie.
+    The program reads the size of two array lists. 
+    It outputs the sum of the corresponding elements of the array lists.
 Command Parameters:
     No parameters to main().
 Input:
-    The user provides the file name, selects movies to watch by entering their serial number, and exit the program by typing “quit".
+    The user provides the list size, and the elements of the two array lists.
 Results:
-    The program displays the list of movies, along with the total runtime of all movies and the title of the least-watched movie.
+    The program displays the sum of the corresponding elements of the array lists.
 Notes:
-    The program uses stoi function to turn string into integer. The program will allow invalid input and coninue running till the user inputs "quit".
+    -
 *********************************************************************/
-
 
 class ArrayList
 {
@@ -27,7 +26,7 @@ class ArrayList
         int iSize = 0;
     
     public: 
-        static const int MAX_SIZE = 100;
+        static const int MAX_SIZE = 100;  //makes the array max size accessible outside class and keeps it constant
 
         void insert(int iValue) //inserts the new value at the end of the list 
         {
@@ -35,7 +34,7 @@ class ArrayList
             iSize++;
         }
 
-        void printList() //prints the list
+        void printList() //prints the array list
         {
             for(int i =0; i < iSize; i++)
             {
@@ -44,7 +43,7 @@ class ArrayList
             cout << endl;
         }
 
-        int access(int iIndex)   //return the value
+        int access(int iIndex)   //return the value of the index
         {
             return array[iIndex];
         }
@@ -53,6 +52,7 @@ class ArrayList
 int main()
 {
     int iNum;
+
     while(true)
     {
         cout << "Enter number of elements: ";
