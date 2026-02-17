@@ -23,29 +23,85 @@ Notes:
 class ArrayList
 {
     private:
-        int MAX_SIZE = 100;
+        int array[100];
+        int iSize = 0;
     
     public: 
-        void insert(int iValue)
-        {
+        static const int MAX_SIZE = 100;
 
+        void insert(int iValue) //inserts the new value at the end of the list 
+        {
+            array[iSize] = iValue;
+            iSize++;
         }
 
-        void printList()
+        void printList() //prints the list
         {
-
+            for(int i =0; i < iSize; i++)
+            {
+                cout << array[i] << " ";
+            }
+            cout << endl;
         }
 
-        int access(int iIndex) 
+        int access(int iIndex)   //return the value
         {
-
+            return array[iIndex];
         }
 };
 
 int main()
 {
     int iNum;
-    cout << "Enter number of elements: ";
-    cin >> iNum;
+    while(true)
+    {
+        cout << "Enter number of elements: ";
+        cin >> iNum;
 
+        if(iNum <= ArrayList::MAX_SIZE) //if number is less than max size then consider it the valid size
+            break;
+
+        cout << "Error! Number is too large" << endl;
+    }
+
+    //create the objects
+    ArrayList A;
+    ArrayList B;
+
+    //input and insert elements of array list A
+    cout << "Enter elements of of array list A: " << endl;
+    for(int i = 0; i < iNum; i++)
+    {
+        int iVal;
+        cin >> iVal;
+        A.insert(iVal);
+    } 
+
+    //input and insert elements of array list B
+    cout << "Enter elements of of array list B: " << endl;
+    for(int i = 0; i < iNum; i++)
+    {
+        int iVal;
+        cin >> iVal;
+        B.insert(iVal);
+    }
+
+    cout << endl;
+
+    //print all elements of array list A
+    cout << "Array list A: ";
+    A.printList();
+
+    //print all elements of array list B
+    cout << "Array list B: ";
+    B.printList();
+
+    cout << endl;
+
+    //sum of the corresponding elements
+    cout << "Sum of corresponding elements: ";
+    for(int i = 0; i < iNum; i++)
+    {
+        cout << A.access(i) + B.access(i) << " ";
+    }
 }
