@@ -45,6 +45,7 @@ class ArrayList
 
         int access(int iIndex)   //return the value of the index
         {
+            //no need to check for bound as the index will be between 0 and iNum
             return array[iIndex];
         }
 };
@@ -58,7 +59,8 @@ int main()
         cout << "Enter number of elements: ";
         cin >> iNum;
 
-        if(iNum <= ArrayList::MAX_SIZE) //if number is less than max size then consider it the valid size
+        //check if the number is negative or zero
+        if(iNum > 0 && iNum <= ArrayList::MAX_SIZE) //if number is less than max size then consider it the valid size
             break;
 
         cout << "Error! Number is too large" << endl;
@@ -104,4 +106,6 @@ int main()
     {
         cout << A.access(i) + B.access(i) << " ";
     }
+
+    cout << endl;
 }
