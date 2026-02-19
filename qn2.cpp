@@ -19,6 +19,7 @@ Notes:
     The program uses stoi function to turn string into integer. The program will allow invalid input and coninue running till the user inputs "quit".
 *********************************************************************/
 
+//singly linked list
 class LinkedList
 {
     private: 
@@ -87,23 +88,29 @@ class LinkedList
                 cout << endl;
             }
         }
+
+        //print the elements of linked list L whose positions are specified in linked list P
+        void printLots(LinkedList L, LinkedList P)
+        {
+            
+        }
 };
 
 int main()
 {
-    int iNum;   //number of elements in the list
-    int iValue;  //value entered by the user
+    int iNum = 0;   //number of elements in the linked list L
+    int iValue;  //value entered by the user 
 
-    //validate the number so that there is no negative or zero size of the list
+    //validate the number so that there is no negative or zero size of the linked list L
     while(iNum <= 0)
     {
         cout << "Enter number of elements in linked list L: ";
         cin >> iNum;
     }
     
-    LinkedList L; //object of the linked list 
+    LinkedList L; //object of the linked list L
 
-    //inser the elements with the input from the user
+    //insert the elements with the input from the user
     cout<< "Enter elements of the linked list L:" << endl;
 
     for(int i = 0; i < iNum; i++)
@@ -112,7 +119,43 @@ int main()
         L.insert(iValue);
     }
 
-    //print all elements of the linked list 
+    //print all elements of the linked list L
     cout << "Linked list L: ";
     L.print();
+
+    int iX;  //number of postions in linked list P
+
+    while(true)
+    {
+        cout << "Enter number of elements in linked list P: ";
+        cin >> iX;
+
+        if(iX <= iNum)
+        {
+            break;
+        }
+        else
+        {
+            cout << "Error: Number of positions in P cannot be greater than length of L (" << iNum << "). " << endl;
+        }
+    }
+
+    LinkedList P; //object of the linked list P
+    
+    //insert the positions with the input from the user
+    cout<< "Enter elements of the linked list P:" << endl;
+
+    for(int i = 0; i < iX; i++)
+    {
+        cin >> iValue;
+        P.insert(iValue);
+    }
+
+    //NEED TO VALIDATE THE POSITION 1 ≤ position ≤ length of 𝐿
+
+    //print all positions of the linked list P
+    cout << "Linked list P: ";
+    P.print();
+
+
 }
