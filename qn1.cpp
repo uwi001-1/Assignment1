@@ -27,14 +27,16 @@ class ArrayList
     
     public: 
         static const int MAX_SIZE = 100;  //makes the array max size accessible outside class and keeps it constant
-
-        void insert(int iValue) //inserts the new value at the end of the list 
+        
+        //inserts the new value at the end of the list 
+        void insert(int iValue) 
         {
             array[iSize] = iValue;
             iSize++;
         }
 
-        void printList() //prints the array list
+        //prints the array list
+        void printList() 
         {
             for(int i =0; i < iSize; i++)
             {
@@ -42,8 +44,9 @@ class ArrayList
             }
             cout << endl;
         }
-
-        int access(int iIndex)   //return the value of the index
+        
+        //return the value of the index
+        int access(int iIndex)   
         {
             //no need to check for bound as the index will be between 0 and iNum
             return array[iIndex];

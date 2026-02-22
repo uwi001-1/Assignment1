@@ -178,6 +178,7 @@ int main()
 
     cout << endl; 
 
+
     int iX;  //number of postions in linked list P
 
     while(true)
