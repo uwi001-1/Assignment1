@@ -37,6 +37,19 @@ class LinkedList
             pHead = nullptr;
         }
 
+        //destructor 
+        ~LinkedList()
+        {
+            Node* pCurrent;
+
+            while(pHead != nullptr)
+            {
+                pCurrent = pHead;
+                pHead = pHead->pNext;
+                delete pCurrent;
+            }
+        }
+
         //insert the elements into the linked list
         void insert(int iValue)
         {
@@ -89,10 +102,22 @@ class LinkedList
             }
         }
 
+        //copy from the temp linked list to linked list P
+        void copyFrom(const LinkedList& other)
+        {
+            Node* pCurr = other.pHead;
+
+            while(pCurr != nullptr)
+            {
+                insert(pCurr->iData);
+                pCurr = pCurr->pNext;
+            }
+        }
+
         //print the elements of linked list L whose positions are specified in linked list P
         void printLots(LinkedList L, LinkedList P)
         {
-            
+             
         }
 };
 
@@ -142,16 +167,37 @@ int main()
 
     LinkedList P; //object of the linked list P
     
-    //insert the positions with the input from the user
-    cout<< "Enter elements of the linked list P:" << endl;
-
-    for(int i = 0; i < iX; i++)
+    //make sure the positions in P are valid positions in L
+    while(true)
     {
-        cin >> iValue;
-        P.insert(iValue);
-    }
+        //temporary linked list
+        LinkedList tempL;
+        bool valid = true;
 
-    //NEED TO VALIDATE THE POSITION 1 ≤ position ≤ length of 𝐿
+        //insert the positions with the input from the user
+        cout<< "Enter elements of the linked list P:" << endl;
+
+        for(int i = 0; i < iX; i++)
+        {
+            cin >> iValue;
+
+            if(iValue < 1 || iValue > iNum)
+            {
+                valid = false;
+            }
+            tempL.insert(iValue);
+        }
+
+        if(valid)
+        {
+            P.copyFrom(tempL);   //copy if it all the positions are valid
+            break;
+        }
+        else
+        {
+            cout << "Error: One or more positions are invalid. Positions must be between 1 and " << iNum << ". " << endl;
+        }
+    }
 
     //print all positions of the linked list P
     cout << "Linked list P: ";
