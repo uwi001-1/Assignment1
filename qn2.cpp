@@ -185,13 +185,13 @@ int main()
         cout << "Enter number of elements in linked list P: ";
         cin >> iX;
 
-        if(iX <= iNum)
+        if(iX <= iNum && iX >= 0)
         {
             break;
         }
         else
         {
-            cout << "Error: Number of positions in P cannot be greater than length of L (" << iNum << "). " << endl;
+            cout << "Error: Number of positions in P cannot be greater than length of L (" << iNum << ") and less than 0. " << endl;
         }
     }
 
@@ -230,7 +230,7 @@ int main()
     }
 
     cout << endl;
-    
+
     //print all positions of the linked list P
     cout << "Linked list P: ";
     P.print();
