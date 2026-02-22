@@ -4,19 +4,19 @@ using namespace std;
 /*********************************************************************
 File name: qn2.cpp
 Author: KRIPA HAYANJU
-Date: 09/18/2025
+Date: 02/21/2026
 
 Purpose:
-    The program reads movie data from a file and stores it in an array of structures. 
-    It allows tracking the number of times each movie has been watched, computes the total runtime of all movies, and identifies the least-watched movie.
+    The program reads the linked list L and P. 
+    It makes sure the user enders valid positions.     
 Command Parameters:
     No parameters to main().
 Input:
-    The user provides the file name, selects movies to watch by entering their serial number, and exit the program by typing “quit".
+    The user provides the elements for the linked list L, and the postitions for the linked list P.
 Results:
-    The program displays the list of movies, along with the total runtime of all movies and the title of the least-watched movie.
+    The program displays the linked list L, linked list P, and the elements of linked list L whose postitions are specified in linked list P. 
 Notes:
-    The program uses stoi function to turn string into integer. The program will allow invalid input and coninue running till the user inputs "quit".
+    -
 *********************************************************************/
 
 //singly linked list
@@ -105,8 +105,16 @@ class LinkedList
         //copy from the temp linked list to linked list P
         void copyFrom(const LinkedList& other)
         {
-            Node* pCurr = other.pHead;
+            // clear existing list first
+            Node* pTemp;
+            while(pHead != nullptr)
+            {
+                pTemp = pHead;
+                pHead = pHead->pNext;
+                delete pTemp;
+            }
 
+            Node* pCurr = other.pHead;
             while(pCurr != nullptr)
             {
                 insert(pCurr->iData);
@@ -115,9 +123,27 @@ class LinkedList
         }
 
         //print the elements of linked list L whose positions are specified in linked list P
-        void printLots(LinkedList L, LinkedList P)
+        void printLots(const LinkedList& L, const LinkedList& P)
         {
-             
+            Node* pL = L.pHead;
+            Node* pP = P.pHead;
+
+            int currentPosition = 1;
+
+            //assume the user enters the integer positions in linked list P in ascending order 
+            while(pL != nullptr && pP != nullptr)
+            {
+                if(currentPosition == pP->iData)   
+                {
+                    //print the elements of linked list L
+                    cout << pL->iData << " ";
+                    pP = pP->pNext;
+                }
+
+                pL = pL->pNext;
+                currentPosition++;
+            }
+            cout << endl;
         }
 };
 
@@ -144,9 +170,13 @@ int main()
         L.insert(iValue);
     }
 
+    cout << endl;
+
     //print all elements of the linked list L
     cout << "Linked list L: ";
     L.print();
+
+    cout << endl; 
 
     int iX;  //number of postions in linked list P
 
@@ -171,7 +201,7 @@ int main()
     while(true)
     {
         //temporary linked list
-        LinkedList tempL;
+        LinkedList tempP;
         bool valid = true;
 
         //insert the positions with the input from the user
@@ -185,12 +215,12 @@ int main()
             {
                 valid = false;
             }
-            tempL.insert(iValue);
+            tempP.insert(iValue);
         }
 
         if(valid)
         {
-            P.copyFrom(tempL);   //copy if it all the positions are valid
+            P.copyFrom(tempP);   //copy if it all the positions are valid
             break;
         }
         else
@@ -199,9 +229,15 @@ int main()
         }
     }
 
+    cout << endl;
+    
     //print all positions of the linked list P
     cout << "Linked list P: ";
     P.print();
 
+    cout << endl;
 
+    //print elements of linked list L whose positions are specified in linked list P
+    cout << "Elements in L at positions specified by P: ";
+    P.printLots(L, P);
 }

@@ -4,7 +4,7 @@ using namespace std;
 /*********************************************************************
 File name: qn1.cpp 
 Author: KRIPA HAYANJU
-Date: 02/17/2025
+Date: 02/17/2026
 
 Purpose:
     The program reads the size of two array lists. 
@@ -63,7 +63,7 @@ int main()
         if(iNum > 0 && iNum <= ArrayList::MAX_SIZE) //if number is less than max size then consider it the valid size
             break;
 
-        cout << "Error! Number is too large" << endl;
+        cout << "Error! Number is too large or can't be negative or zero" << endl;
     }
 
     //create the objects
